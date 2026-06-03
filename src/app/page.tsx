@@ -14,9 +14,9 @@ import { properties, formatPrice } from "@/lib/properties";
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: "500+", label: "Biens vendus" },
+  { value: "100+", label: "Biens disponibles" },
   { value: "98%", label: "Clients satisfaits" },
-  { value: "12", label: "Années d'expertise" },
+  { value: "2023", label: "Année de fondation" },
   { value: "48h", label: "Délai de réponse" },
 ];
 
@@ -27,8 +27,8 @@ const services = [
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
       </svg>
     ),
-    title: "Vente",
-    desc: "Valorisation optimale, mise en marché premium, accompagnement jusqu'à la signature.",
+    title: "Vente & Achat",
+    desc: "Vous cherchez à vendre ou acheter ? Nos agents vous accompagnent à chaque étape pour un processus sans tracas et une issue heureuse.",
   },
   {
     icon: (
@@ -36,8 +36,8 @@ const services = [
         <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
       </svg>
     ),
-    title: "Recherche",
-    desc: "Accès aux biens off-market, sélection rigoureuse selon vos critères précis.",
+    title: "Recherche sur mesure",
+    desc: "Des maisons de départ confortables aux résidences luxueuses, nous avons les ressources et l'expertise locale pour trouver le bien idéal.",
   },
   {
     icon: (
@@ -45,8 +45,8 @@ const services = [
         <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
       </svg>
     ),
-    title: "Gestion",
-    desc: "Gestion locative complète et sereine : locataires, suivi administratif, quittances.",
+    title: "Location",
+    desc: "Bail à court ou long terme, nous proposons une sélection de biens en location adaptés à tous vos besoins et votre budget.",
   },
 ];
 
@@ -167,7 +167,7 @@ export default function HomePage() {
   }, []);
 
   const featured = properties.filter((p) => p.featured);
-  const spotlight = properties[1]; // Corniche Ouest waterfront
+  const spotlight = properties[1]; // Appartement F3 Corniche Ouest
 
   return (
     <div ref={heroRef}>
@@ -189,7 +189,7 @@ export default function HomePage() {
           className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-28 pt-24 sm:pt-36">
           <motion.p initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.7 }}
             className="text-[var(--gold-light)] text-xs tracking-[0.35em] uppercase mb-6">
-            Agence immobilière d&apos;exception · Dakar
+            Agence immobilière · Dakar, Sénégal
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -200,7 +200,7 @@ export default function HomePage() {
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.7 }}
             className="text-[var(--cream)]/65 text-base sm:text-lg font-light max-w-lg mb-10 leading-relaxed">
-            Everest Immo accompagne chaque projet avec rigueur, discrétion et l&apos;ambition d&apos;atteindre le sommet de vos attentes.
+            Expérience, efficacité et professionnalisme — Everest Immo vous accompagne dans chaque étape de votre projet immobilier au Sénégal.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.7 }}
             className="flex flex-col sm:flex-row gap-4">

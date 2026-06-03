@@ -61,10 +61,10 @@ export const properties: Property[] = [
   },
   {
     id: "2",
-    slug: "appartement-f3-corniche-waterfront",
+    slug: "appartement-f3-corniche-ouest",
     type: "Appartement",
     status: "Vente",
-    title: "Appartement F3 — Corniche Ouest Waterfront",
+    title: "Appartement F3 — Corniche Ouest",
     location: "Corniche Ouest, Dakar",
     price: 120000000,
     area: 90,
@@ -86,7 +86,7 @@ export const properties: Property[] = [
       img("Appartement F3 Corniche Ouest waterfront", "PHOTO-2026-05-16-19-09-42 (5).jpg"),
     ],
     description: "Exceptionnel appartement F3 en bord de mer sur la Corniche Ouest. Vue imprenable sur l'Atlantique, finitions haut de gamme et résidence sécurisée. Un bien rare dans l'un des emplacements les plus convoités de Dakar.",
-    features: ["Vue mer", "Corniche Ouest", "Résidence sécurisée", "Finitions premium", "Waterfront", "Lumineux"],
+    features: ["Vue mer", "Corniche Ouest", "Résidence sécurisée", "Finitions premium", "Bord de mer", "Lumineux"],
     featured: true,
   },
   {
@@ -204,10 +204,10 @@ export const properties: Property[] = [
   },
   {
     id: "7",
-    slug: "duplex-waterfront",
+    slug: "duplex-corniche-ouest",
     type: "Duplex",
     status: "Vente",
-    title: "Duplex d'exception — Waterfront",
+    title: "Duplex d'exception — Corniche Ouest",
     location: "Corniche Ouest, Dakar",
     price: 250000000,
     area: 200,
@@ -218,7 +218,7 @@ export const properties: Property[] = [
     images: [
       img("Appartement F3 Corniche Ouest waterfront", "PHOTO-2026-05-16-19-09-40.jpg"),
     ],
-    description: "Exceptionnel duplex waterfront sur la Corniche Ouest de Dakar. Deux niveaux de prestations d'exception face à l'Atlantique. Un bien unique alliant espace, luxe et vue mer imprenable. Sur demande uniquement.",
+    description: "Exceptionnel duplex sur la Corniche Ouest de Dakar. Deux niveaux de prestations d'exception face à l'Atlantique. Un bien unique alliant espace, luxe et vue mer imprenable. Sur demande uniquement.",
     features: ["Vue mer panoramique", "Duplex sur 2 niveaux", "Corniche Ouest", "Prestations d'exception", "Rooftop privé", "Sur demande"],
     featured: true,
   },

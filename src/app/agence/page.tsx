@@ -6,11 +6,11 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "L'Agence",
-  description: "Découvrez Everest Immo, agence immobilière haut de gamme à Dakar. Notre histoire, notre équipe et nos valeurs au service de votre projet immobilier.",
+  description: "Découvrez Everest Immo, agence immobilière professionnelle à Dakar, Sénégal. Expertise locale, accompagnement personnalisé pour vos projets immobiliers.",
   alternates: { canonical: "https://everest-immo.com/agence" },
   openGraph: {
     title: "L'Agence | Everest Immo",
-    description: "Agence immobilière de prestige à Dakar depuis plus de 10 ans. Expertise, discrétion et accompagnement sur-mesure.",
+    description: "Agence immobilière à Dakar depuis 2023. Expérience, efficacité et professionnalisme au service de votre projet immobilier au Sénégal.",
     url: "https://everest-immo.com/agence",
   },
 };
@@ -26,10 +26,10 @@ const partners = [
 ];
 
 const values = [
-  { title: "Excellence", desc: "Chaque bien, chaque client mérite notre meilleur. Nous ne faisons aucun compromis sur la qualité du service." },
-  { title: "Discrétion", desc: "La confidentialité de nos clients est une priorité absolue. Chaque transaction est traitée avec le plus grand soin." },
-  { title: "Expertise", desc: "12 ans d'expérience et une connaissance intime des marchés premium pour vous conseiller au mieux." },
-  { title: "Réseau", desc: "Un réseau exclusif d'off-market et de partenaires (notaires, architectes, fiscalistes) à votre service." },
+  { title: "Expérience", desc: "Forts de plusieurs années dans le domaine immobilier sénégalais, nous maîtrisons chaque étape de votre projet." },
+  { title: "Efficacité", desc: "Des processus clairs et rapides pour concrétiser votre projet sans tracas, dans les meilleurs délais." },
+  { title: "Professionnalisme", desc: "Une équipe dédiée, disponible et compétente qui place vos intérêts au cœur de chaque transaction." },
+  { title: "Expertise locale", desc: "Une connaissance approfondie du marché immobilier sénégalais pour vous guider vers les meilleures opportunités." },
 ];
 
 export default function AgencePage() {
@@ -44,13 +44,13 @@ export default function AgencePage() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto">
           <ScrollReveal>
-            <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-5">Notre histoire</p>
+            <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-5">Qui sommes-nous</p>
             <h1 className="font-cinzel font-bold text-[var(--cream)] leading-tight"
               style={{ fontSize: "clamp(2.2rem, 6vw, 5rem)", letterSpacing: "-0.02em" }}>
-              L&apos;immobilier<br />comme un art.
+              Expérience,<br />efficacité et<br />professionnalisme.
             </h1>
             <p className="text-[var(--cream)]/55 text-base font-light mt-6 max-w-xl leading-relaxed">
-              Fondée en 2014 à Paris, Everest Immo est née d&apos;une conviction : l&apos;immobilier de prestige mérite une agence à son image — rigoureuse, discrète, ambitieuse.
+              Bienvenue chez Everest Immobilier — une équipe de professionnels expérimentés, basée à Dakar, dédiée à vous accompagner dans chaque étape de votre projet immobilier au Sénégal.
             </p>
           </ScrollReveal>
         </div>
@@ -60,21 +60,21 @@ export default function AgencePage() {
       <section className="bg-[var(--bg)] py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <ScrollReveal>
-            <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-5">Depuis 2014</p>
+            <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-5">Depuis 2023</p>
             <h2 className="font-cinzel font-semibold text-[var(--fg)] leading-tight mb-6"
               style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)" }}>
-              12 ans au sommet<br />du marché.
+              Notre seul but :<br />la réussite de votre projet.
             </h2>
             <div className="space-y-4 text-[var(--muted)] text-sm leading-relaxed font-light">
-              <p>Everest Immo a été fondée avec une ambition simple : offrir aux propriétaires et acquéreurs de biens d&apos;exception un service digne de leurs attentes. Loin des agences généralistes, nous nous sommes spécialisés dès le premier jour sur le segment haut de gamme.</p>
-              <p>Aujourd&apos;hui, notre équipe de 8 experts accompagne chaque année plus de 50 transactions, pour un volume total de plus de 80 millions d&apos;euros. Notre réputation repose sur trois piliers : la rigueur, la discrétion et la performance.</p>
-              <p>Membre de la Fédération Nationale de l&apos;Immobilier et titulaire de la carte professionnelle CPI, Everest Immo opère dans le strict respect de la réglementation et de l&apos;éthique professionnelle.</p>
+              <p>Fondée en 2023 à Dakar, Everest Immo est née d&apos;une conviction forte : l&apos;immobilier sénégalais mérite une agence à son image — rigoureuse, disponible et véritablement à l&apos;écoute de ses clients.</p>
+              <p>Que vous cherchiez la maison de vos rêves, souhaitiez vendre votre propriété actuelle ou investir dans le marché immobilier local, nos agents possèdent une parfaite connaissance du secteur immobilier sénégalais et sauront vous guider pour assurer un processus sans tracas et une issue heureuse à votre projet.</p>
+              <p>Notre agence réunit toutes les conditions de fiabilité garantissant le succès de votre projet immobilier — des maisons de départ confortables aux résidences luxueuses, en passant par les biens locatifs à court ou long terme.</p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.15} direction="right">
             <div className="relative aspect-square overflow-hidden">
               <Image src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80&auto=format&fit=crop"
-                alt="Bureaux Everest Immo" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+                alt="Bureaux Everest Immo Dakar" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
             </div>
           </ScrollReveal>
         </div>
@@ -84,7 +84,7 @@ export default function AgencePage() {
       <section className="bg-[var(--ink-900)] py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal className="mb-14">
-            <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-5">Ce qui nous guide</p>
+            <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-5">Ce qui nous définit</p>
             <h2 className="font-cinzel font-semibold text-[var(--cream)] leading-tight"
               style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)" }}>
               Nos valeurs.
@@ -149,6 +149,9 @@ export default function AgencePage() {
               style={{ fontSize: "clamp(1.6rem, 4vw, 3rem)" }}>
               Travaillons ensemble.
             </h2>
+            <p className="text-[var(--cream)]/50 text-sm font-light mb-8 max-w-md mx-auto leading-relaxed">
+              Venez découvrir nos différentes offres de services qui sauront satisfaire tous vos besoins immobiliers.
+            </p>
             <Link href="/contact"
               className="inline-flex items-center gap-3 border border-[var(--gold)] text-[var(--gold)] text-xs tracking-[0.2em] uppercase px-10 py-4 min-h-[52px] hover:bg-[var(--gold)] hover:text-[var(--ink)] transition-colors duration-300 cursor-pointer group">
               Nous contacter
