@@ -41,6 +41,14 @@ export const metadata: Metadata = {
   verification: {
     google: "REMPLACER_PAR_VOTRE_CODE_GOOGLE_SEARCH_CONSOLE",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    apple: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
 };
 
 const jsonLd = {
