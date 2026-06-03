@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 const partners = [
   {
     name: "Vytimo · Listing",
-    role: "Partenaire Digital",
-    desc: "Agence digitale spécialisée dans la création de sites web et d'outils pour les professionnels de l'immobilier.",
+    role: "Partenaire stratégique",
+    desc: "Vytimo est une agence immobilière nouvelle génération : vente, location, achat et mise en relation de biens. Elle accompagne également les professionnels avec la création de sites sur mesure et des agents IA immobiliers.",
     logo: "/Listing-logo.svg",
     href: "https://vytimo.com",
   },
