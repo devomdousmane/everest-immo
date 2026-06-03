@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: path.resolve(__dirname),
+  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
@@ -8,7 +12,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Redirige tout le trafic de vytimo.com vers everest-immo.com
       {
         source: "/:path*",
         has: [{ type: "host", value: "vytimo.com" }],

@@ -1,12 +1,15 @@
+# Ancien dossier app/ (contenu migré à la racine)
+app/
+
 # Dependencies
-app/node_modules/
+node_modules/
 
 # Build
-app/.next/
+.next/
 
 # Env
-app/.env.local
-app/.env*.local
+.env.local
+.env*.local
 
 # OS
 .DS_Store
