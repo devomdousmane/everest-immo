@@ -1,5 +1,5 @@
 # Ancien dossier app/ (contenu migré à la racine)
-app/
+/app/
 
 # Dependencies
 node_modules/
