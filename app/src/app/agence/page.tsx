@@ -15,24 +15,13 @@ export const metadata: Metadata = {
   },
 };
 
-const team = [
+const partners = [
   {
-    name: "Alexandre Moreau",
-    role: "Fondateur & Directeur",
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80&auto=format&fit=crop&facepad=3&face=1",
-    bio: "15 ans d'expérience dans l'immobilier de prestige. Ancien directeur chez Christie's Real Estate France.",
-  },
-  {
-    name: "Isabelle Chen",
-    role: "Directrice Commerciale",
-    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80&auto=format&fit=crop&facepad=3",
-    bio: "Spécialiste des marchés Paris intramuros et Neuilly. Trilinguë français, anglais, mandarin.",
-  },
-  {
-    name: "Thomas Laroche",
-    role: "Expert Gestion Locative",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80&auto=format&fit=crop&facepad=3",
-    bio: "Gestionnaire certifié, 200+ biens sous gestion. Expert en optimisation de patrimoine locatif.",
+    name: "Vytimo · Listing",
+    role: "Partenaire Digital",
+    desc: "Agence digitale spécialisée dans la création de sites web et d'outils pour les professionnels de l'immobilier.",
+    logo: "/Listing-logo.svg",
+    href: "https://vytimo.com",
   },
 ];
 
@@ -114,27 +103,38 @@ export default function AgencePage() {
         </div>
       </section>
 
-      {/* Équipe */}
+      {/* Partenaires */}
       <section className="bg-[var(--bg)] py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal className="mb-14">
-            <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-5">L&apos;équipe</p>
+            <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-5">Ils nous accompagnent</p>
             <h2 className="font-cinzel font-semibold text-[var(--fg)] leading-tight"
               style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)" }}>
-              Des experts à votre service.
+              Nos partenaires.
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {team.map((member, i) => (
-              <ScrollReveal key={member.name} delay={i * 0.12}>
-                <article>
-                  <div className="aspect-[3/4] overflow-hidden mb-5 relative">
-                    <Image src={member.img} alt={member.name} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {partners.map((p, i) => (
+              <ScrollReveal key={p.name} delay={i * 0.12}>
+                <a href={p.href} target="_blank" rel="noopener noreferrer"
+                  className="group block border border-[var(--border)] p-8 hover:border-[var(--gold)]/50 transition-all duration-300 cursor-pointer">
+                  <div className="h-16 flex items-center mb-6">
+                    <Image
+                      src={p.logo}
+                      alt={p.name}
+                      width={180}
+                      height={64}
+                      className="h-12 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                    />
                   </div>
-                  <h3 className="font-cinzel text-[var(--fg)] text-base font-medium">{member.name}</h3>
-                  <p className="text-[var(--gold)] text-xs tracking-[0.15em] uppercase mt-1 mb-3">{member.role}</p>
-                  <p className="text-[var(--muted)] text-sm font-light leading-relaxed">{member.bio}</p>
-                </article>
+                  <p className="text-[var(--gold)] text-[10px] tracking-[0.25em] uppercase mb-2">{p.role}</p>
+                  <p className="text-[var(--muted)] text-sm font-light leading-relaxed">{p.desc}</p>
+                  <div className="mt-5 flex items-center gap-2 text-[var(--gold)] text-xs tracking-[0.15em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span>Visiter</span>
+                    <ArrowRight size={12} />
+                  </div>
+                </a>
               </ScrollReveal>
             ))}
           </div>
