@@ -22,7 +22,7 @@ export default function BiensPage() {
   });
 
   return (
-    <div className="pt-24">
+    <div className="pt-20">
 
       {/* Header */}
       <section className="bg-[var(--ink-900)] py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[var(--gold)]/20">
@@ -41,8 +41,8 @@ export default function BiensPage() {
       </section>
 
       {/* Filtres */}
-      <section className="bg-[var(--bg)] border-b border-[var(--border)] sticky top-[60px] z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center gap-3">
+      <section className="bg-[var(--bg)] border-b border-[var(--border)] sticky top-[56px] sm:top-[64px] z-30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-wrap items-center gap-2 sm:gap-3">
           <SlidersHorizontal size={14} className="text-[var(--muted)] shrink-0" />
 
           <div className="flex flex-wrap gap-2">

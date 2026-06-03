@@ -90,10 +90,10 @@ export default function AgencePage() {
               Nos valeurs.
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--gold)]/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-[var(--gold)]/10 divide-y divide-x divide-[var(--gold)]/10">
             {values.map((v, i) => (
               <ScrollReveal key={v.title} delay={i * 0.08}>
-                <div className="bg-[var(--ink-900)] p-8 h-full">
+                <div className="bg-[var(--ink-900)] p-8">
                   <h3 className="font-cinzel text-[var(--gold)] text-base font-medium mb-4">{v.title}</h3>
                   <p className="text-[var(--cream)]/50 text-sm leading-relaxed font-light">{v.desc}</p>
                 </div>

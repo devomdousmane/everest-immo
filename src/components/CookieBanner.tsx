@@ -61,26 +61,28 @@ export default function CookieBanner() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
 
             {!showDetails ? (
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-                <Cookie size={20} className="text-[var(--gold)] shrink-0 mt-0.5 sm:mt-0" />
-                <div className="flex-1 min-w-0">
-                  <p className="text-[var(--cream)] text-sm font-medium mb-1">Nous utilisons des cookies</p>
-                  <p className="text-[var(--cream)]/50 text-xs leading-relaxed">
-                    Des cookies essentiels assurent le bon fonctionnement du site. Avec votre accord, des cookies analytiques nous aident à l&apos;améliorer.{" "}
-                    <Link href="/politique-confidentialite" className="text-[var(--gold)] hover:underline">En savoir plus</Link>
-                  </p>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div className="flex items-start gap-3 flex-1 min-w-0">
+                  <Cookie size={18} className="text-[var(--gold)] shrink-0 mt-0.5" />
+                  <div className="min-w-0">
+                    <p className="text-[var(--cream)] text-sm font-medium mb-1">Nous utilisons des cookies</p>
+                    <p className="text-[var(--cream)]/50 text-xs leading-relaxed">
+                      Des cookies essentiels assurent le bon fonctionnement du site. Avec votre accord, des cookies analytiques nous aident à l&apos;améliorer.{" "}
+                      <Link href="/politique-confidentialite" className="text-[var(--gold)] hover:underline">En savoir plus</Link>
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 shrink-0 w-full sm:w-auto">
                   <button onClick={() => setShowDetails(true)}
-                    className="text-[var(--cream)]/50 text-xs tracking-[0.15em] uppercase hover:text-[var(--cream)] transition-colors cursor-pointer">
+                    className="text-[var(--cream)]/50 text-xs tracking-[0.15em] uppercase hover:text-[var(--cream)] transition-colors cursor-pointer min-h-[40px] px-1">
                     Personnaliser
                   </button>
                   <button onClick={() => save(false)}
-                    className="border border-[var(--border)] text-[var(--cream)]/70 text-xs tracking-[0.15em] uppercase px-5 py-2.5 hover:border-[var(--cream)]/40 transition-colors cursor-pointer">
+                    className="border border-[var(--border)] text-[var(--cream)]/70 text-xs tracking-[0.15em] uppercase px-4 py-2.5 min-h-[40px] hover:border-[var(--cream)]/40 transition-colors cursor-pointer flex-1 sm:flex-none">
                     Refuser
                   </button>
                   <button onClick={() => save(true)}
-                    className="bg-[var(--gold)] text-white text-xs tracking-[0.15em] uppercase px-5 py-2.5 hover:bg-[var(--gold-light)] transition-colors cursor-pointer">
+                    className="bg-[var(--gold)] text-white text-xs tracking-[0.15em] uppercase px-4 py-2.5 min-h-[40px] hover:bg-[var(--gold-light)] transition-colors cursor-pointer flex-1 sm:flex-none">
                     Tout accepter
                   </button>
                 </div>

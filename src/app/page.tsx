@@ -97,10 +97,10 @@ const categories = [
 function ParallaxImage({ src, alt }: { src: string; alt: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
   return (
     <div ref={ref} className="absolute inset-0 overflow-hidden">
-      <motion.div style={{ y }} className="absolute inset-[-15%] w-full h-[130%]">
+      <motion.div style={{ y }} className="absolute inset-0 scale-110">
         <Image src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
       </motion.div>
     </div>
@@ -147,9 +147,9 @@ export default function HomePage() {
       // Cartes catégories : entrée en cascade
       gsap.utils.toArray<HTMLElement>(".cat-card").forEach((el, i) => {
         gsap.fromTo(el,
-          { opacity: 0, y: 60 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: i * 0.12,
-            scrollTrigger: { trigger: el, start: "top 88%", once: true } }
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", delay: i * 0.1,
+            scrollTrigger: { trigger: el, start: "top 95%", once: true } }
         );
       });
 
@@ -186,7 +186,7 @@ export default function HomePage() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent z-20" />
 
         <motion.div style={{ y: titleY, opacity: heroOpacity }}
-          className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28 pt-36">
+          className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-28 pt-24 sm:pt-36">
           <motion.p initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.7 }}
             className="text-[var(--gold-light)] text-xs tracking-[0.35em] uppercase mb-6">
             Agence immobilière d&apos;exception · Dakar
@@ -226,14 +226,16 @@ export default function HomePage() {
 
 
       {/* ── CATÉGORIES ── */}
-      <section className="bg-[var(--ink-900)] py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[var(--ink-900)] py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <ScrollReveal className="mb-14">
-            <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-4">Explorer par catégorie</p>
-            <h2 className="font-cinzel font-semibold text-[var(--cream)] leading-tight"
-              style={{ fontSize: "clamp(1.8rem, 4vw, 3.2rem)" }}>
-              Trouvez le bien<br />qui vous correspond.
-            </h2>
+          <ScrollReveal>
+            <div className="mb-14 text-center">
+              <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-4">Explorer par catégorie</p>
+              <h2 className="font-cinzel font-semibold text-[var(--cream)] leading-tight"
+                style={{ fontSize: "clamp(1.8rem, 4vw, 3.2rem)" }}>
+                Trouvez le bien<br />qui vous correspond.
+              </h2>
+            </div>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -241,7 +243,7 @@ export default function HomePage() {
               <Link
                 key={cat.label}
                 href={`/biens`}
-                className="cat-card group relative overflow-hidden aspect-[3/4] block cursor-pointer">
+                className="cat-card group relative overflow-hidden aspect-[4/3] sm:aspect-[3/4] block cursor-pointer w-full">
                 {/* Image avec parallax framer-motion */}
                 <ParallaxImage src={cat.image} alt={cat.label} />
                 {/* Overlay */}
@@ -272,17 +274,17 @@ export default function HomePage() {
       {/* ── SERVICES ── */}
       <section className="bg-[var(--bg)] py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <ScrollReveal className="mb-16">
+          <ScrollReveal className="mb-16 text-center sm:text-left">
             <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-4">Ce que nous faisons</p>
             <h2 className="font-cinzel font-semibold text-[var(--fg)] leading-tight"
               style={{ fontSize: "clamp(1.8rem, 4vw, 3.2rem)" }}>
               Un accompagnement<br />à la hauteur de vos ambitions.
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[var(--border)]">
+          <div className="border border-[var(--border)] divide-y sm:divide-y-0 sm:divide-x divide-[var(--border)] sm:grid sm:grid-cols-3">
             {services.map((s, i) => (
               <ScrollReveal key={s.title} delay={i * 0.1}>
-                <div className="bg-[var(--bg)] p-8 sm:p-10 group cursor-pointer h-full">
+                <div className="bg-[var(--bg)] p-8 sm:p-10 group cursor-pointer flex flex-col items-center sm:items-start text-center sm:text-left">
                   <div className="w-10 h-10 flex items-center justify-center border border-[var(--border)] text-[var(--gold)] group-hover:border-[var(--gold)] transition-colors duration-300 mb-6">
                     {s.icon}
                   </div>
@@ -298,7 +300,7 @@ export default function HomePage() {
 
 
       {/* ── SPOTLIGHT BIEN (plein écran parallax) ── */}
-      <section className="gsap-parallax relative h-[85vh] overflow-hidden flex items-end">
+      <section className="gsap-parallax relative min-h-[500px] h-[85vh] overflow-hidden flex items-end">
         <div className="parallax-bg absolute inset-0 z-0">
           <Image
             src="/everst-immo/Appartement%20F3%20Corniche%20Ouest%20waterfront/PHOTO-2026-05-16-19-09-42.jpg"
@@ -310,7 +312,7 @@ export default function HomePage() {
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-[var(--ink-900)] via-[var(--ink-900)]/30 to-transparent" />
         <div className="absolute inset-0 z-10 bg-gradient-to-r from-[var(--ink-900)]/80 to-transparent" />
 
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24 w-full">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:pb-16 md:pb-24 w-full">
           <div className="spotlight-text max-w-xl">
             <p className="text-[var(--gold)] text-[10px] tracking-[0.35em] uppercase mb-4">Bien en vedette</p>
             <div className="gold-line w-12 h-px bg-[var(--gold)] mb-6 origin-left" />
@@ -397,10 +399,10 @@ export default function HomePage() {
       {/* ── STATS ── */}
       <section className="bg-[var(--bg)] py-24 sm:py-32 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--border)]">
+          <div className="grid grid-cols-2 lg:grid-cols-4 border border-[var(--border)] divide-x divide-y divide-[var(--border)]">
             {stats.map((s, i) => (
               <ScrollReveal key={s.label} delay={i * 0.08}>
-                <div className="bg-[var(--bg)] px-8 py-12 text-center">
+                <div className="bg-[var(--bg)] px-4 py-8 sm:px-8 sm:py-12 text-center">
                   <p className="stat-number font-cinzel gold-text font-bold mb-2"
                     style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>{s.value}</p>
                   <p className="text-[var(--muted)] text-xs tracking-[0.25em] uppercase font-light">{s.label}</p>
@@ -413,7 +415,7 @@ export default function HomePage() {
 
 
       {/* ── GRILLE IMMERSIVE 3 BIENS EN PARALLAX ── */}
-      <section className="bg-[var(--ink-900)] py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[var(--ink-900)] py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal className="mb-14 text-center">
             <p className="text-[var(--gold)] text-xs tracking-[0.3em] uppercase mb-4">Quartiers d'exception</p>
@@ -423,12 +425,11 @@ export default function HomePage() {
             </h2>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:h-[480px]">
             {[properties[0], properties[2], properties[4]].map((p, i) => (
-              <ScrollReveal key={p.id} delay={i * 0.15}>
+              <ScrollReveal key={p.id} delay={i * 0.15} className="h-full">
                 <Link href={`/biens/${p.slug}`}
-                  className="group relative overflow-hidden block cursor-pointer"
-                  style={{ aspectRatio: i === 1 ? "3/4" : "4/5" }}>
+                  className="group relative overflow-hidden block cursor-pointer h-64 md:h-full">
                   <ParallaxImage src={p.image} alt={p.title} />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-900)]/90 via-transparent to-transparent z-10 group-hover:from-[var(--ink-900)] transition-all duration-500" />
                   <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">

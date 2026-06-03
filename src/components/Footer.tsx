@@ -20,7 +20,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <Image src="/logo-evrest-v2.PNG" alt="Everest Immo" width={280} height={90} className="h-20 w-auto mb-5" />
+            <Image src="/logo-evrest-v2.PNG" alt="Everest Immo" width={280} height={90} className="h-12 sm:h-14 w-auto mb-5" />
             <p className="text-[var(--cream)]/40 text-sm font-light leading-relaxed max-w-xs">
               L&apos;immobilier d&apos;exception, au sommet de vos attentes. Votre partenaire de confiance depuis 12 ans.
             </p>

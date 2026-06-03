@@ -106,7 +106,7 @@ export default function PropertyDetail({ property }: { property: Property }) {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <ScrollReveal delay={0.2} direction="right">
-              <div className="sticky top-24 border border-[var(--border)] p-8">
+              <div className="lg:sticky lg:top-24 border border-[var(--border)] p-6 sm:p-8">
                 <p className="font-cinzel gold-text font-bold mb-1"
                   style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}>
                   {formatPrice(property.price, property.status)}
