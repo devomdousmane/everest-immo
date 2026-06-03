@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import AgenceTimeline from "./AgenceClient";
 
 export const metadata: Metadata = {
   title: "L'Agence",
@@ -80,6 +81,9 @@ export default function AgencePage() {
         </div>
       </section>
 
+      {/* Timeline animée (Client Component) */}
+      <AgenceTimeline />
+
       {/* Valeurs */}
       <section className="bg-[var(--ink-900)] py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -113,20 +117,14 @@ export default function AgencePage() {
               Nos partenaires.
             </h2>
           </ScrollReveal>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {partners.map((p, i) => (
               <ScrollReveal key={p.name} delay={i * 0.12}>
                 <a href={p.href} target="_blank" rel="noopener noreferrer"
                   className="group block border border-[var(--border)] p-8 hover:border-[var(--gold)]/50 transition-all duration-300 cursor-pointer">
                   <div className="h-16 flex items-center mb-6">
-                    <Image
-                      src={p.logo}
-                      alt={p.name}
-                      width={180}
-                      height={64}
-                      className="h-12 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <Image src={p.logo} alt={p.name} width={180} height={64}
+                      className="h-12 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <p className="text-[var(--gold)] text-[10px] tracking-[0.25em] uppercase mb-2">{p.role}</p>
                   <p className="text-[var(--muted)] text-sm font-light leading-relaxed">{p.desc}</p>
