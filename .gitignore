@@ -1,0 +1,16 @@
+# Dependencies
+app/node_modules/
+
+# Build
+app/.next/
+
+# Env
+app/.env.local
+app/.env*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/

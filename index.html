@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Everest Immo — L'immobilier d'exception</title>
+  <meta name="description" content="Agence immobilière haut de gamme. Vente, achat et gestion de biens d'exception." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold:    { DEFAULT: '#CA8A04', light: '#C9A84C', dark: '#92400E' },
+            ink:     { DEFAULT: '#0C0A09', 900: '#1C1917', 700: '#44403C', 500: '#78716C', 300: '#D6D3D1' },
+            cream:   '#FAFAF9',
+          },
+          fontFamily: {
+            cinzel:  ['Cinzel', 'serif'],
+            josefin: ['Josefin Sans', 'sans-serif'],
+          },
+          transitionDuration: { DEFAULT: '200ms' },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* Base */
+    body { font-family: 'Josefin Sans', sans-serif; }
+    h1, h2, h3 { font-family: 'Cinzel', serif; }
+
+    /* Gold gradient text */
+    .gold-text {
+      background: linear-gradient(135deg, #CA8A04 0%, #C9A84C 50%, #CA8A04 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Glass card */
+    .glass {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(201, 168, 76, 0.18);
+    }
+
+    /* Gold border bottom on hover */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: #CA8A04;
+      transition: width 300ms ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0C0A09; }
+    ::-webkit-scrollbar-thumb { background: #CA8A04; border-radius: 2px; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-ink font-josefin antialiased">
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#" aria-label="Everest Immo — accueil" class="flex items-center gap-3 cursor-pointer">
+        <img src="logo-evrest.jpeg" alt="Everest Immo" class="h-9 w-auto" />
+      </a>
+
+      <!-- Nav desktop -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Navigation principale">
+        <a href="#services" class="nav-link text-sm tracking-widest uppercase text-ink-700 hover:text-ink transition-colors cursor-pointer">Services</a>
+        <a href="#biens"    class="nav-link text-sm tracking-widest uppercase text-ink-700 hover:text-ink transition-colors cursor-pointer">Nos biens</a>
+        <a href="#chiffres" class="nav-link text-sm tracking-widest uppercase text-ink-700 hover:text-ink transition-colors cursor-pointer">L'agence</a>
+        <a href="#contact"  class="nav-link text-sm tracking-widest uppercase text-ink-700 hover:text-ink transition-colors cursor-pointer">Contact</a>
+      </nav>
+
+      <!-- CTA desktop -->
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 bg-ink text-cream text-sm tracking-widest uppercase px-5 py-3 min-h-[44px] hover:bg-gold transition-colors duration-300 cursor-pointer">
+        Estimation gratuite
+      </a>
+
+      <!-- Burger mobile -->
+      <button id="menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"
+        class="md:hidden flex flex-col justify-center gap-1.5 p-2 cursor-pointer min-h-[44px] min-w-[44px]">
+        <span class="block w-6 h-px bg-ink transition-all duration-300" id="bar1"></span>
+        <span class="block w-6 h-px bg-ink transition-all duration-300" id="bar2"></span>
+        <span class="block w-4 h-px bg-ink transition-all duration-300" id="bar3"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-ink flex flex-col justify-center items-center gap-10 translate-x-full transition-transform duration-500" aria-hidden="true">
+    <nav class="flex flex-col items-center gap-8" aria-label="Navigation mobile">
+      <a href="#services" class="mobile-link font-cinzel text-2xl text-cream tracking-wider cursor-pointer hover:text-gold-light transition-colors">Services</a>
+      <a href="#biens"    class="mobile-link font-cinzel text-2xl text-cream tracking-wider cursor-pointer hover:text-gold-light transition-colors">Nos biens</a>
+      <a href="#chiffres" class="mobile-link font-cinzel text-2xl text-cream tracking-wider cursor-pointer hover:text-gold-light transition-colors">L'agence</a>
+      <a href="#contact"  class="mobile-link font-cinzel text-2xl text-cream tracking-wider cursor-pointer hover:text-gold-light transition-colors">Contact</a>
+    </nav>
+    <a href="#contact" class="mobile-link mt-4 border border-gold text-gold text-sm tracking-widest uppercase px-8 py-4 min-h-[44px] hover:bg-gold hover:text-ink transition-colors cursor-pointer">
+      Estimation gratuite
+    </a>
+  </div>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="relative min-h-screen flex flex-col justify-end bg-ink overflow-hidden">
+
+    <!-- Background image placeholder -->
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900/20 via-ink/60 to-ink z-10"></div>
+    <div class="absolute inset-0 z-0"
+      style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600&q=80&auto=format&fit=crop');
+             background-size: cover; background-position: center;">
+    </div>
+
+    <!-- Gold line top -->
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent z-20"></div>
+
+    <!-- Content -->
+    <div class="relative z-20 px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 lg:pb-28 pt-32">
+      <div class="max-w-4xl">
+
+        <!-- Eyebrow -->
+        <p class="text-gold-light text-xs sm:text-sm tracking-[0.3em] uppercase mb-6 reveal">
+          Agence immobilière d'exception
+        </p>
+
+        <!-- Title -->
+        <h1 class="font-cinzel font-bold text-cream leading-[1.05] mb-8 reveal"
+          style="font-size: clamp(2.5rem, 8vw, 7rem); letter-spacing: -0.02em;">
+          Votre bien,<br />
+          <span class="gold-text">notre sommet.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-cream/70 text-base sm:text-lg font-light max-w-xl mb-10 leading-relaxed reveal">
+          Everest Immo accompagne chaque projet immobilier avec rigueur,
+          discrétion et l'ambition d'atteindre le sommet de vos attentes.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 reveal">
+          <a href="#biens"
+            class="inline-flex items-center justify-center gap-3 bg-gold text-ink font-semibold text-sm tracking-widest uppercase px-8 py-4 min-h-[52px] hover:bg-gold-light transition-colors duration-300 cursor-pointer">
+            Découvrir nos biens
+            <!-- Arrow icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#contact"
+            class="inline-flex items-center justify-center gap-3 border border-cream/30 text-cream font-light text-sm tracking-widest uppercase px-8 py-4 min-h-[52px] hover:border-gold hover:text-gold transition-colors duration-300 cursor-pointer">
+            Estimation gratuite
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2" aria-hidden="true">
+      <span class="text-cream/40 text-xs tracking-widest uppercase">Scroll</span>
+      <div class="w-px h-10 bg-gradient-to-b from-gold/60 to-transparent animate-pulse"></div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section id="services" class="bg-cream py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Header -->
+      <div class="mb-14 sm:mb-20 reveal">
+        <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4">Ce que nous faisons</p>
+        <h2 class="font-cinzel font-semibold text-ink leading-tight"
+          style="font-size: clamp(1.8rem, 4vw, 3.5rem);">
+          Un accompagnement<br />à la hauteur de vos ambitions.
+        </h2>
+      </div>
+
+      <!-- Services grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-ink-300">
+
+        <!-- Service 1 -->
+        <article class="bg-cream p-8 sm:p-10 group cursor-pointer reveal">
+          <div class="mb-6">
+            <!-- Icon -->
+            <div class="w-10 h-10 flex items-center justify-center border border-ink-300 group-hover:border-gold transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="#CA8A04" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="font-cinzel text-lg font-medium text-ink mb-3 group-hover:text-gold transition-colors duration-300">Vente</h3>
+          <p class="text-ink-500 text-sm leading-relaxed font-light">
+            Valorisation optimale de votre bien, mise en marché premium et accompagnement jusqu'à la signature.
+          </p>
+          <div class="mt-6 w-6 h-px bg-gold transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+        </article>
+
+        <!-- Service 2 -->
+        <article class="bg-cream p-8 sm:p-10 group cursor-pointer reveal">
+          <div class="mb-6">
+            <div class="w-10 h-10 flex items-center justify-center border border-ink-300 group-hover:border-gold transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="#CA8A04" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="font-cinzel text-lg font-medium text-ink mb-3 group-hover:text-gold transition-colors duration-300">Recherche</h3>
+          <p class="text-ink-500 text-sm leading-relaxed font-light">
+            Définition de vos critères, sélection rigoureuse et accès à des biens off-market introuvables ailleurs.
+          </p>
+          <div class="mt-6 w-6 h-px bg-gold transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+        </article>
+
+        <!-- Service 3 -->
+        <article class="bg-cream p-8 sm:p-10 group cursor-pointer reveal">
+          <div class="mb-6">
+            <div class="w-10 h-10 flex items-center justify-center border border-ink-300 group-hover:border-gold transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="#CA8A04" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="font-cinzel text-lg font-medium text-ink mb-3 group-hover:text-gold transition-colors duration-300">Gestion</h3>
+          <p class="text-ink-500 text-sm leading-relaxed font-light">
+            Gestion locative complète et sereine : sélection des locataires, suivi administratif, quittances.
+          </p>
+          <div class="mt-6 w-6 h-px bg-gold transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       BIENS EN VEDETTE
+  ============================================================ -->
+  <section id="biens" class="bg-ink py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Header -->
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14 reveal">
+        <div>
+          <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4">Sélection exclusive</p>
+          <h2 class="font-cinzel font-semibold text-cream leading-tight"
+            style="font-size: clamp(1.8rem, 4vw, 3.5rem);">
+            Nos biens<br />d'exception.
+          </h2>
+        </div>
+        <a href="#contact" class="self-start sm:self-auto text-gold text-sm tracking-widest uppercase border-b border-gold pb-1 hover:text-gold-light hover:border-gold-light transition-colors duration-300 cursor-pointer whitespace-nowrap">
+          Voir tout le catalogue
+        </a>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- Card 1 -->
+        <article class="group cursor-pointer reveal">
+          <div class="overflow-hidden aspect-[4/3] mb-4">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format&fit=crop"
+              alt="Villa moderne avec piscine — 850 000 €"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy" />
+          </div>
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-cream/50 text-xs tracking-widest uppercase mb-1">Vente · Villa</p>
+              <h3 class="font-cinzel text-cream text-base font-medium leading-snug">Villa contemporaine avec piscine</h3>
+              <p class="text-ink-500 text-sm mt-1">5 pièces · 240 m²</p>
+            </div>
+            <p class="font-cinzel text-gold text-sm font-semibold whitespace-nowrap">850 000 €</p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="group cursor-pointer reveal">
+          <div class="overflow-hidden aspect-[4/3] mb-4">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80&auto=format&fit=crop"
+              alt="Appartement haussmannien — 1 200 000 €"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy" />
+          </div>
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-cream/50 text-xs tracking-widest uppercase mb-1">Vente · Appartement</p>
+              <h3 class="font-cinzel text-cream text-base font-medium leading-snug">Appartement haussmannien rénové</h3>
+              <p class="text-ink-500 text-sm mt-1">4 pièces · 160 m²</p>
+            </div>
+            <p class="font-cinzel text-gold text-sm font-semibold whitespace-nowrap">1 200 000 €</p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="group cursor-pointer reveal sm:col-span-2 lg:col-span-1">
+          <div class="overflow-hidden aspect-[4/3] mb-4">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80&auto=format&fit=crop"
+              alt="Penthouse terrasse — 2 400 000 €"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy" />
+          </div>
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-cream/50 text-xs tracking-widest uppercase mb-1">Vente · Penthouse</p>
+              <h3 class="font-cinzel text-cream text-base font-medium leading-snug">Penthouse avec terrasse panoramique</h3>
+              <p class="text-ink-500 text-sm mt-1">6 pièces · 320 m²</p>
+            </div>
+            <p class="font-cinzel text-gold text-sm font-semibold whitespace-nowrap">2 400 000 €</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CHIFFRES CLÉS
+  ============================================================ -->
+  <section id="chiffres" class="bg-cream py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t border-ink-300">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-ink-300">
+
+        <div class="bg-cream px-6 sm:px-10 py-10 text-center reveal">
+          <p class="font-cinzel gold-text font-bold mb-2" style="font-size: clamp(2rem, 5vw, 3.5rem);">500+</p>
+          <p class="text-ink-500 text-xs sm:text-sm tracking-widest uppercase font-light">Biens vendus</p>
+        </div>
+
+        <div class="bg-cream px-6 sm:px-10 py-10 text-center reveal">
+          <p class="font-cinzel gold-text font-bold mb-2" style="font-size: clamp(2rem, 5vw, 3.5rem);">98%</p>
+          <p class="text-ink-500 text-xs sm:text-sm tracking-widest uppercase font-light">Clients satisfaits</p>
+        </div>
+
+        <div class="bg-cream px-6 sm:px-10 py-10 text-center reveal">
+          <p class="font-cinzel gold-text font-bold mb-2" style="font-size: clamp(2rem, 5vw, 3.5rem);">12</p>
+          <p class="text-ink-500 text-xs sm:text-sm tracking-widest uppercase font-light">Années d'expertise</p>
+        </div>
+
+        <div class="bg-cream px-6 sm:px-10 py-10 text-center reveal">
+          <p class="font-cinzel gold-text font-bold mb-2" style="font-size: clamp(2rem, 5vw, 3.5rem);">48h</p>
+          <p class="text-ink-500 text-xs sm:text-sm tracking-widest uppercase font-light">Délai de réponse</p>
+        </div>
+
+      </div>
+
+      <!-- Citation -->
+      <blockquote class="mt-16 sm:mt-20 max-w-2xl mx-auto text-center reveal">
+        <p class="font-cinzel text-ink text-lg sm:text-xl font-light leading-relaxed italic">
+          « L'immobilier d'exception demande une agence d'exception. »
+        </p>
+        <footer class="mt-4 text-gold text-xs tracking-widest uppercase">— Everest Immo</footer>
+      </blockquote>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       TÉMOIGNAGES
+  ============================================================ -->
+  <section class="bg-ink py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="mb-14 reveal">
+        <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4">Ils nous font confiance</p>
+        <h2 class="font-cinzel font-semibold text-cream leading-tight"
+          style="font-size: clamp(1.8rem, 4vw, 3.5rem);">
+          La parole de nos clients.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        <!-- Temoignage 1 -->
+        <blockquote class="glass p-8 reveal">
+          <div class="flex gap-1 mb-5" aria-label="5 étoiles sur 5">
+            <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <p class="text-cream/80 text-sm leading-relaxed font-light mb-6">
+            "Everest Immo a vendu notre appartement en moins de trois semaines, au prix demandé. Une équipe professionnelle, disponible et à l'écoute. Je recommande sans hésitation."
+          </p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-gold/20 border border-gold/30 flex items-center justify-center">
+              <span class="font-cinzel text-gold text-xs font-medium">SL</span>
+            </div>
+            <div>
+              <p class="text-cream text-sm font-medium">Sophie L.</p>
+              <p class="text-cream/40 text-xs tracking-wide">Propriétaire vendeuse</p>
+            </div>
+          </footer>
+        </blockquote>
+
+        <!-- Temoignage 2 -->
+        <blockquote class="glass p-8 reveal">
+          <div class="flex gap-1 mb-5" aria-label="5 étoiles sur 5">
+            <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <p class="text-cream/80 text-sm leading-relaxed font-light mb-6">
+            "Grâce à leur réseau off-market, j'ai trouvé le bien idéal que je cherchais depuis des mois. Une expérience client irréprochable du début à la fin."
+          </p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-gold/20 border border-gold/30 flex items-center justify-center">
+              <span class="font-cinzel text-gold text-xs font-medium">MR</span>
+            </div>
+            <div>
+              <p class="text-cream text-sm font-medium">Marc R.</p>
+              <p class="text-cream/40 text-xs tracking-wide">Acquéreur</p>
+            </div>
+          </footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT / CTA FINAL
+  ============================================================ -->
+  <section id="contact" class="bg-cream py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t border-ink-300">
+    <div class="max-w-2xl mx-auto">
+
+      <div class="mb-12 reveal">
+        <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4">Parlons de votre projet</p>
+        <h2 class="font-cinzel font-semibold text-ink leading-tight"
+          style="font-size: clamp(1.8rem, 4vw, 3.5rem);">
+          Votre prochaine<br />étape commence ici.
+        </h2>
+        <p class="text-ink-500 text-sm leading-relaxed font-light mt-5 max-w-md">
+          Estimation gratuite, mise en vente ou recherche de bien — prenez contact et nous vous répondrons sous 48h.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form class="flex flex-col gap-5 reveal" novalidate aria-label="Formulaire de contact">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="nom" class="block text-xs tracking-widest uppercase text-ink-500 mb-2">Nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="name" required
+              placeholder="Jean Dupont"
+              class="w-full px-4 py-3.5 min-h-[52px] bg-transparent border border-ink-300 text-ink text-sm placeholder-ink-300 focus:border-ink focus:outline-none transition-colors duration-200" />
+          </div>
+          <div>
+            <label for="email" class="block text-xs tracking-widest uppercase text-ink-500 mb-2">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required
+              placeholder="jean@exemple.fr"
+              class="w-full px-4 py-3.5 min-h-[52px] bg-transparent border border-ink-300 text-ink text-sm placeholder-ink-300 focus:border-ink focus:outline-none transition-colors duration-200" />
+          </div>
+        </div>
+
+        <div>
+          <label for="telephone" class="block text-xs tracking-widest uppercase text-ink-500 mb-2">Téléphone</label>
+          <input id="telephone" name="telephone" type="tel" autocomplete="tel"
+            placeholder="+33 6 00 00 00 00"
+            class="w-full px-4 py-3.5 min-h-[52px] bg-transparent border border-ink-300 text-ink text-sm placeholder-ink-300 focus:border-ink focus:outline-none transition-colors duration-200" />
+        </div>
+
+        <div>
+          <label for="sujet" class="block text-xs tracking-widest uppercase text-ink-500 mb-2">Sujet</label>
+          <select id="sujet" name="sujet"
+            class="w-full px-4 py-3.5 min-h-[52px] bg-cream border border-ink-300 text-ink text-sm focus:border-ink focus:outline-none transition-colors duration-200 cursor-pointer appearance-none">
+            <option value="">Choisissez un sujet</option>
+            <option value="estimation">Estimation gratuite</option>
+            <option value="vente">Vendre un bien</option>
+            <option value="achat">Acheter un bien</option>
+            <option value="gestion">Gestion locative</option>
+            <option value="autre">Autre demande</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class="block text-xs tracking-widest uppercase text-ink-500 mb-2">Message</label>
+          <textarea id="message" name="message" rows="4"
+            placeholder="Décrivez votre projet en quelques mots..."
+            class="w-full px-4 py-3.5 bg-transparent border border-ink-300 text-ink text-sm placeholder-ink-300 focus:border-ink focus:outline-none transition-colors duration-200 resize-none"></textarea>
+        </div>
+
+        <button type="submit"
+          class="w-full sm:w-auto self-start inline-flex items-center justify-center gap-3 bg-ink text-cream font-semibold text-sm tracking-widest uppercase px-10 py-4 min-h-[52px] hover:bg-gold transition-colors duration-300 cursor-pointer">
+          Envoyer ma demande
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+
+      </form>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="bg-ink border-t border-gold/20 px-4 sm:px-6 lg:px-8 py-12">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-10 mb-10">
+
+        <!-- Brand -->
+        <div>
+          <img src="logo-evrest.jpeg" alt="Everest Immo" class="h-9 w-auto mb-4" />
+          <p class="text-cream/40 text-xs font-light leading-relaxed max-w-xs">
+            L'immobilier d'exception, au sommet de vos attentes.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <nav class="flex flex-col gap-3" aria-label="Liens du footer">
+          <a href="#services" class="text-cream/50 text-xs tracking-widest uppercase hover:text-gold transition-colors duration-200 cursor-pointer">Services</a>
+          <a href="#biens"    class="text-cream/50 text-xs tracking-widest uppercase hover:text-gold transition-colors duration-200 cursor-pointer">Nos biens</a>
+          <a href="#chiffres" class="text-cream/50 text-xs tracking-widest uppercase hover:text-gold transition-colors duration-200 cursor-pointer">L'agence</a>
+          <a href="#contact"  class="text-cream/50 text-xs tracking-widest uppercase hover:text-gold transition-colors duration-200 cursor-pointer">Contact</a>
+        </nav>
+
+        <!-- Contact info -->
+        <address class="not-italic flex flex-col gap-3">
+          <a href="tel:+33600000000" class="flex items-center gap-3 text-cream/50 text-sm hover:text-gold transition-colors duration-200 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.47 2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            +33 6 00 00 00 00
+          </a>
+          <a href="mailto:contact@everest-immo.fr" class="flex items-center gap-3 text-cream/50 text-sm hover:text-gold transition-colors duration-200 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            contact@everest-immo.fr
+          </a>
+          <p class="flex items-center gap-3 text-cream/50 text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            12 avenue des Sommets, Paris 8e
+          </p>
+        </address>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t border-gold/10 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <p class="text-cream/30 text-xs">© 2026 Everest Immo. Tous droits réservés.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-cream/30 text-xs hover:text-cream/60 transition-colors cursor-pointer">Mentions légales</a>
+          <a href="#" class="text-cream/30 text-xs hover:text-cream/60 transition-colors cursor-pointer">Politique de confidentialité</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // --- Navbar scroll effect ---
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        navbar.classList.add('bg-cream/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-ink-300/30');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-cream/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-ink-300/30');
+      }
+    }, { passive: true });
+
+    // --- Mobile menu ---
+    const menuBtn  = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let menuOpen = false;
+
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      menuBtn.setAttribute('aria-expanded', menuOpen);
+      mobileMenu.setAttribute('aria-hidden', !menuOpen);
+      if (menuOpen) {
+        mobileMenu.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+        bar1.style.cssText = 'transform: translateY(6px) rotate(45deg)';
+        bar2.style.cssText = 'opacity: 0';
+        bar3.style.cssText = 'transform: translateY(-6px) rotate(-45deg); width: 24px';
+      } else {
+        mobileMenu.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+        bar1.style.cssText = '';
+        bar2.style.cssText = '';
+        bar3.style.cssText = '';
+      }
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+
+    // Close menu on link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => { if (menuOpen) toggleMenu(); });
+    });
+
+    // --- Scroll reveal ---
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // --- Form submit (placeholder) ---
+    document.querySelector('form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit]');
+      btn.textContent = 'Message envoyé !';
+      btn.disabled = true;
+      btn.classList.replace('bg-ink', 'bg-gold');
+    });
+  </script>
+
+</body>
+</html>
